@@ -150,7 +150,7 @@
 
 ### 2단계. 프로그램 내려받기
 이 페이지 우측 상단의 초록색 **`Code` → `Download ZIP`** 을 눌러 다운로드한 뒤 원하는 폴더에 압축을 풀어주세요.  
-*(Git 사용자는 `git clone https://github.com/your-username/lms-notifier.git`)*
+*(Git 사용자는 `git clone https://github.com/xyzw0128-debug/HS_LMS.git`)*
 
 <span id="step-3"></span>
 

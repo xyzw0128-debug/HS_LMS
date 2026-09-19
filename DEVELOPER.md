@@ -144,8 +144,8 @@ lms_notifier/
 ### 5.2 개발 환경 셋업
 ```bash
 # 저장소 클론 및 가상환경 구성
-git clone https://github.com/your-username/lms-notifier.git
-cd lms-notifier
+git clone https://github.com/xyzw0128-debug/HS_LMS.git
+cd HS_LMS
 python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
