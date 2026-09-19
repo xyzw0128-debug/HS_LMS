@@ -237,7 +237,7 @@ python -m lms_notifier.main
 
 <span id="setup"></span>
 
-## ⏱ 내 맞춤 스케줄 설정 (`--setup`)
+## ⏱ 내 맞춤 스케줄 시간 설정 (`--setup`)
 
 `.env` 파일을 직접 열 필요 없이 터미널 질문에 답하면서 언제든지 바꿀 수 있습니다:
 
