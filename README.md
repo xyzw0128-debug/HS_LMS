@@ -193,7 +193,7 @@ chmod 600 .env
 
 | 항목 | 넣을 값 | 필수 여부 | 예시 |
 |---|---|:---:|---|
-| `HS_USER_ID` | LMS 로그인 학번 | ✅ 필수 | `20241234` |
+| `HS_USER_ID` | LMS 아이디 | ✅ 필수 | `myID1234!` |
 | `HS_USER_PW` | LMS 비밀번호 | ✅ 필수 | `mypassword!` |
 | `DISCORD_WEBHOOK_URL` | 1단계에서 복사한 디스코드 웹훅 주소 | ✅ 필수 | `https://discord.com/api/webhooks/...` |
 | `GEMINI_API_KEY` | Gemini API 키 (AI 공지 요약용) | 선택 | 비워두셔도 자체 엔진으로 동작합니다 |
