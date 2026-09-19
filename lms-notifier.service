@@ -1,0 +1,20 @@
+[Unit]
+Description=Hanshin LMS Assignment/Notice Notifier
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# [주의] 본인의 리눅스 사용자 계정명으로 변경해주세요 (예: User=ubuntu 또는 User=pi)
+User=<사용자명>
+
+# [주의] 프로젝트가 위치한 실제 절대 경로로 변경해주세요
+WorkingDirectory=/home/<사용자명>/lms-notifier
+EnvironmentFile=/home/<사용자명>/lms-notifier/.env
+ExecStart=/home/<사용자명>/lms-notifier/venv/bin/python -m lms_notifier.main
+
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

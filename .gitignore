@@ -1,0 +1,23 @@
+# 보안 및 개인정보 (절대 커밋 금지)
+.env
+.env.*
+!.env.example
+
+# 상태 저장소 및 런타임 설정
+*.json
+*.tmp
+
+# 가상환경 및 파이썬 캐시
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS 및 에디터 설정
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
