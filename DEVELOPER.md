@@ -11,44 +11,48 @@
 ```mermaid
 flowchart TB
     subgraph CoreLoop ["Main Loop (main.py)"]
-        A[Start / Tick] --> B[Hot-Reload settings.json]
-        B --> C[Check Local Deadline Reminders]
-        C --> D{Is Active Time?}
-        D -- No --> E[Sleep 60s & Loop]
-        D -- Yes --> F{Auth Locked?}
-        F -- Yes --> E
-        F -- No --> G[poll_once]
-        G --> H[Sleep poll_interval_sec]
+        A["Start / Tick"] --> B["Hot-Reload settings.json"]
+        B --> C["Check Local Deadline Reminders"]
+        C --> D{"Is Active Time?"}
+        D -- "No" --> E["Sleep 60s & Loop"]
+        D -- "Yes" --> F{"Auth Locked?"}
+        F -- "Yes" --> E
+        F -- "No" --> G["poll_once"]
+        G --> H["Sleep poll_interval_sec"]
         H --> A
     end
 
     subgraph LMSClient ["LmsSession (lms_client.py)"]
-        G --> L1[SSO Auth Handshake]
-        L1 --> L2[Scrape Course List]
-        L2 --> L3[Scrape Classroom Detail]
-        L3 --> L4[Scrape Board Item Detail]
+        G --> L1["SSO Auth Handshake"]
+        L1 --> L2["Scrape Course List"]
+        L2 --> L3["Scrape Classroom Detail"]
+        L3 --> L4["Scrape Board Item Detail"]
     end
 
     subgraph ParserEngine ["Parser Engine (parser.py)"]
-        L2 & L3 & L4 --> P1[BeautifulSoup4 HTML Parse]
-        P1 --> P2[Extract Assignments / Lectures / Notices]
+        L2 --> P1["BeautifulSoup4 HTML Parse"]
+        L3 --> P1
+        L4 --> P1
+        P1 --> P2["Extract Assignments / Lectures / Notices"]
     end
 
     subgraph AIModule ["AI & Heuristics (ai_summarizer.py)"]
-        P2 --> S1{Gemini API Key?}
-        S1 -- Yes --> S2[Gemini 3.8 Flash SDK]
-        S1 -- No / Fallback --> S3[Local Regex Heuristic Engine]
+        P2 --> S1{"Gemini API Key?"}
+        S1 -- "Yes" --> S2["Gemini 3.8 Flash SDK"]
+        S1 -- "No / Fallback" --> S3["Local Regex Heuristic Engine"]
     end
 
     subgraph NotifierEngine ["Discord Notifier (notifier.py)"]
-        P2 & S2 & S3 --> N1[Build Embeds]
-        N1 --> N2[Discord Webhook PATCH / POST]
-        N1 --> N3[Send Alert Ping on New Items]
+        P2 --> N1["Build Embeds"]
+        S2 --> N1
+        S3 --> N1
+        N1 --> N2["Discord Webhook PATCH / POST"]
+        N1 --> N3["Send Alert Ping on New Items"]
     end
 
     subgraph Storage ["State & Persistence"]
-        N2 --> ST1[state.json (Seen Items & Message IDs)]
-        B --> ST2[settings.json (Active Hours & Interval)]
+        N2 --> ST1["state.json (Seen Items & Message IDs)"]
+        B --> ST2["settings.json (Active Hours & Interval)"]
     end
 ```
 
